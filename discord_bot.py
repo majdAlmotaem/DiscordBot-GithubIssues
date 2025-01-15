@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import urllib.parse
+import requests
 
 # Deine Tokens und Repository Informationen
 DISCORD_BOT_TOKEN = "MTMyNzI1MzM4NTQ4OTE1NDE3MA.GT29Jn.bwrmJBxSRgacJzNKSivck0FJU5kXCOpzJicbZA"
@@ -59,6 +60,49 @@ async def issue(ctx, repo_name: str, *, issue_title: str):
         await ctx.send(f"Erstelle ein neues Issue hier: {new_issue_url}")
     except Exception as e:
         await ctx.send(f"Fehler: {e}")
+
+
+
+@bot.command()
+async def show_issues(ctx, repo_name: str):
+    """Zeigt die offenen Issues eines GitHub Repositories an.
+    
+    Usage: !show_issues Benutzername/Repositoryname
+    """
+    try:
+        # GitHub API URL für Issues
+        api_url = f"https://api.github.com/repos/{repo_name}/issues"
+        
+        # API Anfrage senden
+        response = requests.get(api_url)
+        issues = response.json()
+        
+        if response.status_code == 200:
+            # Erstelle ein Embed für die Ausgabe
+            embed = discord.Embed(
+                title=f"📋 Issues für {repo_name}",
+                color=discord.Color.blue()
+            )
+            
+            if not issues:
+                embed.description = "Keine offenen Issues gefunden!"
+            else:
+                # Zeige die ersten 10 Issues an
+                for issue in issues[:10]:
+                    embed.add_field(
+                        name=f"#{issue['number']} - {issue['title']}",
+                        value=f"Status: {issue['state']}\n"
+                              f"[Link zum Issue]({issue['html_url']})",
+                        inline=False
+                    )
+            
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send(f"Fehler beim Abrufen der Issues. Statuscode: {response.status_code}")
+            
+    except Exception as e:
+        await ctx.send(f"Fehler beim Abrufen der Issues: {str(e)}")
+
 
 
 bot.run(DISCORD_BOT_TOKEN)
