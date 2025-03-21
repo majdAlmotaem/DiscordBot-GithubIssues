@@ -106,3 +106,5 @@ dmypy.json
 
 # VSCode Project
 .vscode/
+
+config.py

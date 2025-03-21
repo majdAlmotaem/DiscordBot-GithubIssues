@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 import urllib.parse
 import requests
+from config import DISCORD_BOT_TOKEN
 
-# Deine Tokens und Repository Informationen
-DISCORD_BOT_TOKEN = "MTMyNzI1MzM4NTQ4OTE1NDE3MA.GT29Jn.bwrmJBxSRgacJzNKSivck0FJU5kXCOpzJicbZA"
+DISCORD_BOT_TOKEN = DISCORD_BOT_TOKEN
 
 intents = discord.Intents.default()  # Standard Intents aktivieren
 intents.message_content = True       # Berechtigung zum Lesen von Nachrichteninhalten
