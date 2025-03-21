@@ -20,15 +20,18 @@ A Discord bot that helps bridge the gap between Discord conversations and GitHub
 
 ### Help Command
 
-<!-- Insert screenshot of !hilfe command output here -->
+![image](https://github.com/user-attachments/assets/b0729fbf-5edf-45f9-a12f-2466dd61b527)
+
 
 ### Issue Creation
 
-<!-- Insert screenshot of !issue command output here -->
+![image](https://github.com/user-attachments/assets/7b61c193-f1f2-492b-9454-c3a0978759e8)
+
 
 ### Viewing Repository Issues
 
-<!-- Insert screenshot of !show_issues command output here -->
+![image](https://github.com/user-attachments/assets/b754044f-1846-40b1-a61d-9a47f5ee4f80)
+
 
 ## Current State
 
